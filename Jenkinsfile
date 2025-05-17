@@ -8,6 +8,12 @@ pipeline {
     }
 
     stages {
+        stage('정리') {
+            steps {
+                sh 'sudo rm -rf target/'
+            }
+        }
+
         stage("소스코드 가져오기") {
             steps {
                 // 여기에 git 저장소 정보 입력
