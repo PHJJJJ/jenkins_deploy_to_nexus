@@ -3,16 +3,11 @@ pipeline {
     agent {
         docker {
             image 'maven:3.9.9-ibm-semeru-17-focal'
-            args '--user root'
+            args '--network=host'
         }
     }
 
     stages {
-        stage('정리') {
-            steps {
-                sh 'rm -rf target/'
-            }
-        }
 
         stage("소스코드 가져오기") {
             steps {
@@ -26,7 +21,7 @@ pipeline {
         stage("빌드 및 테스트") {
             steps {
                 script {
-                    sh 'mvn clean test'
+                    sh 'mvn -Dmaven.repo.local=$HOME/.m2/repository clean test'
                 }
             }
         }
@@ -35,7 +30,7 @@ pipeline {
             steps {
                 script {
                     // Maven의 deploy 목표를 사용하여 스냅샷 저장소에 배포
-                    sh 'mvn deploy -DskipTests'
+                    sh 'mvn -Dmaven.repo.local=$HOME/.m2/repository deploy -DskipTests'
                 }
             }
         }
