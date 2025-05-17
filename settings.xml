@@ -1,0 +1,20 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  
+  <servers>
+    <server>
+      <id>maven-private-releases</id>
+      <username>test_maven_user</username>
+      <password>rex6885!</password>
+    </server>
+    <server>
+      <id>maven-private-snapshots</id>
+      <username>test_maven_user</username>
+      <password>rex6885!</password>
+    </server>
+  </servers>
+  
+  <!-- 필요에 따라 다른 설정 추가 -->
+</settings>
