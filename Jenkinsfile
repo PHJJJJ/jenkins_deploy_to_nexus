@@ -2,7 +2,7 @@ pipeline {
     // Docker 이미지를 사용하여 Java 17 + Maven 환경 구성
     agent {
         docker {
-            image 'maven:3.8.6-openjdk-17'
+            image 'maven:3.9.9-ibm-semeru-17-focal'
         }
     }
 
