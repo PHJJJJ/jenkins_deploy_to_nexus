@@ -21,7 +21,8 @@ pipeline {
         stage("빌드 및 테스트") {
             steps {
                 script {
-                    sh 'mvn -Dmaven.repo.local=$HOME/.m2/repository clean test'
+                    sh 'mkdir -p ./.m2/repository'
+                    sh 'mvn -Dmaven.repo.local=./.m2/repository clean test'
                 }
             }
         }
@@ -30,7 +31,25 @@ pipeline {
             steps {
                 script {
                     // Maven의 deploy 목표를 사용하여 스냅샷 저장소에 배포
-                    sh 'mvn -Dmaven.repo.local=$HOME/.m2/repository deploy -DskipTests'
+
+                    
+                            stage("빌드 및 테스트") {
+            steps {
+                script {
+                    sh 'mkdir -p ./.m2/repository'
+                    sh 'mvn -Dmaven.repo.local=./.m2/repository clean test'
+                }
+            }
+        }
+
+        stage("Nexus 스냅샷 저장소에 배포") {
+            steps {
+                script {
+                    // Maven의 deploy 목표를 사용하여 스냅샷 저장소에 배포
+                     sh 'mvn -Dmaven.repo.local=./.m2/repository deploy -DskipTests'
+                }
+            }
+        }
                 }
             }
         }
