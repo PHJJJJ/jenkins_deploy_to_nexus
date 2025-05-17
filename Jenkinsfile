@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('정리') {
             steps {
-                sh 'sudo rm -rf target/'
+                sh 'rm -rf target/'
             }
         }
 
