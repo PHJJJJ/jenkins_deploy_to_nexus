@@ -3,6 +3,7 @@ pipeline {
     agent {
         docker {
             image 'maven:3.9.9-ibm-semeru-17-focal'
+            args '-v /var/jenkins_home/maven-repo:/var/jenkins_home/workspace/java_deploy_to_nexus/.m2/repository'
         }
     }
 
@@ -19,7 +20,7 @@ pipeline {
         stage("빌드 및 테스트") {
             steps {
                 script {
-                    sh "mvn clean test"
+                    sh 'mvn -s settings.xml clean test'
                 }
             }
         }
@@ -28,7 +29,7 @@ pipeline {
             steps {
                 script {
                     // Maven의 deploy 목표를 사용하여 스냅샷 저장소에 배포
-                    sh "mvn deploy -DskipTests"
+                    sh 'mvn -s settings.xml deploy'
                 }
             }
         }
