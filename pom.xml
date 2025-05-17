@@ -58,6 +58,7 @@
 		</plugins>
 	</build>
 
+	<!-- 의존성을 가져오는 경우 -->
     <repositories>
         <repository>
             <id>maven-private-snapshots</id>
@@ -68,5 +69,19 @@
             <url>http://localhost:8081/repository/maven-releases/</url>
         </repository>
     </repositories>
+
+	    <!-- 배포 설정 -->
+    <distributionManagement>
+        <repository>
+            <id>maven-private-releases</id>
+            <name>maven-private-releases</name>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-private-snapshots</id>
+            <name>maven-private-snapshots</name>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
