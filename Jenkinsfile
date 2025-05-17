@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     // 빌드와 동일한 로컬 저장소 경로 사용
-                    sh 'mvn -Dmaven.repo.local=./.m2/repository -s settings.xml deploy -DskipTests'
+                    sh 'mvn -Dmaven.repo.local=./.m2/repository deploy -DskipTests'
                 }
             }
         }
